@@ -10,6 +10,7 @@ public class Main {
 
     public static void  main(String[] args) throws IOException {
 
+
         //Open and Read file
         File r = new File("./input_scode.txt");
         FileInputStream temp = new FileInputStream(r);
@@ -36,7 +37,6 @@ public class Main {
             return false;
         }
     }
-
     public static List<Map<String, String>> lexer(StringBuilder t){
         //Return Var
         List<Map<String, String>> res = new ArrayList<>();
@@ -56,26 +56,23 @@ public class Main {
                 "true",     "try",     "typedef",   "typeid",    "typename", "unsigned",
                 "using",    "virtual", "void",      "while",     "real",     "function",
                 "boolean",  "real");
-
         //Lexer
         for(int i = 0; i < t.length(); i++){
             char temp = t.charAt(i);
             if(temp == ' ') continue;
             if(Separator.indexOf(temp) != -1 ||
             Operator.indexOf(temp) != -1){
+                StringBuilder finalCurr = curr;
                 if(keywords.contains(curr.toString())){
-                    StringBuilder finalCurr = curr;
                     Map<String, String> pair = new HashMap<>(){{put("Keyword", finalCurr.toString());}};
                     res.add(pair);
                     curr = new StringBuilder();
                 } else if (isNumeric(curr.toString())) {
-                    StringBuilder finalCurr = curr;
                     Map<String, String> pair = new HashMap<>(){{put("Real", finalCurr.toString());}};
                     res.add(pair);
                     curr = new StringBuilder();
                 } else {
                     if(!curr.isEmpty()){
-                        StringBuilder finalCurr = curr;
                         Map<String, String> pair = new HashMap<>(){{put("Identifier", finalCurr.toString());}};
                         res.add(pair);
                         curr = new StringBuilder();
@@ -93,8 +90,6 @@ public class Main {
             }else {
                 curr.append(t.charAt(i));
             }
-
-
         }
         return res;
     }
