@@ -1,4 +1,3 @@
-import javax.sound.midi.SysexMessage;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -19,7 +18,9 @@ public class Main {
             if(i == 0)continue;
             tem.append((char)i);
         }
-        List<Map<String, String>> res = lexor(tem);
+        //Lexer
+        List<Map<String, String>> res = lexer(tem);
+        //Output
         System.out.println("{Token=Lexeme}");
         for(Object x : res){
             System.out.println(x);
@@ -36,8 +37,10 @@ public class Main {
         }
     }
 
-    public static List<Map<String, String>> lexor(StringBuilder t){
+    public static List<Map<String, String>> lexer(StringBuilder t){
+        //Return Var
         List<Map<String, String>> res = new ArrayList<>();
+        //Token Check
         StringBuilder curr = new StringBuilder();
         String Separator = "(){}[],:;";
         String Operator = "=/-*+<>";
@@ -54,6 +57,7 @@ public class Main {
                 "using",    "virtual", "void",      "while",     "real",     "function",
                 "boolean",  "real");
 
+        //Lexer
         for(int i = 0; i < t.length(); i++){
             char temp = t.charAt(i);
             if(temp == ' ') continue;
