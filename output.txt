@@ -1,0 +1,11 @@
+{Token=Lexeme}
+{Keyword=while}
+{Separator=(}
+{Identifier=t}
+{Operator=<}
+{Identifier=lower}
+{Separator=)}
+{Identifier=r}
+{Operator==}
+{Real=28.00}
+{Separator=;}

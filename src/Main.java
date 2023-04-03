@@ -63,30 +63,27 @@ public class Main {
             if(Separator.indexOf(temp) != -1 ||
             Operator.indexOf(temp) != -1){
                 StringBuilder finalCurr = curr;
+                Map<String, String> pair = new HashMap<>();
                 if(keywords.contains(curr.toString())){
-                    Map<String, String> pair = new HashMap<>(){{put("Keyword", finalCurr.toString());}};
-                    res.add(pair);
+                    pair.put("Keyword", finalCurr.toString());
                     curr = new StringBuilder();
                 } else if (isNumeric(curr.toString())) {
-                    Map<String, String> pair = new HashMap<>(){{put("Real", finalCurr.toString());}};
-                    res.add(pair);
+                    pair.put("Real", finalCurr.toString());
                     curr = new StringBuilder();
                 } else {
                     if(!curr.isEmpty()){
-                        Map<String, String> pair = new HashMap<>(){{put("Identifier", finalCurr.toString());}};
-                        res.add(pair);
+                        pair.put("Identifier", finalCurr.toString());
                         curr = new StringBuilder();
                     }
                 }
+                res.add(pair);
+                Map<String, String> t1 = new HashMap<>();
                 if(Separator.indexOf(temp) != -1){
-                    int finalI = i;
-                    Map<String, String> pair = new HashMap<>(){{put("Separator", String.valueOf(temp));}};
-                    res.add(pair);
+                    t1.put("Separator", String.valueOf(temp));
                 }else{
-                    int finalI = i;
-                    Map<String, String> pair = new HashMap<>(){{put("Operator", String.valueOf(temp));}};
-                    res.add(pair);
+                    t1.put("Operator", String.valueOf(temp));
                 }
+                res.add(t1);
             }else {
                 curr.append(t.charAt(i));
             }
